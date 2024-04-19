@@ -1,0 +1,10 @@
+input:focus + label,
+input:valid + label {
+  color: #4299e1;
+  top: -1px;
+  font-size: 0.8rem;
+}
+
+/* input[type="email"]:placeholder-shown + label {
+  color: #000; Цвет лейбла, когда плейсхолдер отображается
+}  */
