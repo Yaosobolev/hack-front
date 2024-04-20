@@ -7,7 +7,7 @@ export const group = ["Пинж1", "Пинж2", "БАС1", "БАС2"];
 export const section = {
   title: "раздел достижений",
   name: "section",
-  items: ["Наука", "Спорт", "Творчество"],
+  items: ["Наука", "Спорт", "Творчество", "Волонтерство"],
 }; // разделам достижений
 
 // export const university = {

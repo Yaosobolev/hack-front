@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-// import logo from "../../public/";
+
+function truncateDescription(description, maxLength) {
+  if (description.split(" ").length > maxLength) {
+    return description.split(" ").slice(0, maxLength).join(" ") + "...";
+  } else {
+    return description;
+  }
+}
 
 export const Postblock = ({ publication }) => {
-  function truncateDescription(description, maxLength) {
-    if (description.split(" ").length > maxLength) {
-      return description.split(" ").slice(0, maxLength).join(" ") + "...";
-    } else {
-      return description;
-    }
-  }
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [isLiked, SetIsLiked] = useState(false);
   const [countLikes, setCountLikes] = useState(publication.likes);
