@@ -12,6 +12,8 @@ import DefaultLayout from "./layouts/DefaultLayout.jsx";
 import Post from "./pages/Post.jsx";
 import Rating from "./pages/Rating.jsx";
 import ProfileStudent from "./pages/ProfileStudent.jsx";
+import ProfileUniversity from "./pages/ProfileUniversity.jsx";
+import Admin from "./pages/admin/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
           {
             path: "/profile",
             element: <ProfileStudent />,
+          },
+          {
+            path: "/profile-university",
+            element: <ProfileUniversity />,
+          },
+          {
+            path: "/adminPanel",
+            element: <Admin />,
           },
         ],
       },

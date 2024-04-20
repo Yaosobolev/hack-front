@@ -31,63 +31,82 @@ const ProfileStudent = () => {
   };
 
   return (
-    <div className="p-4  bg-white rounded-lg  relative">
-      <div className=" flex flex-row ml-14 items-center mb-4 ">
-        <div className="relative">
-          <img
-            src={
-              selectedImage
-                ? URL.createObjectURL(selectedImage)
-                : student.avatar
-            }
-            alt="Фото профиля"
-            className="w-40 h-40 rounded-full  hover:bg-black hover:opacity-50"
-            onClick={handleUploadClick}
-          />
-          {/* <div class="absolute inset-0 "></div> */}
-          <input
-            type="file"
-            id="avatarInput"
-            style={{ display: "none" }}
-            onChange={handleFileUpload}
-          />
+    <div className="p-4 bg-white rounded-lg relative ">
+      <div className="flex flex-row mb-4">
+        {/* Аватарка, Имя идругая инфа  */}
+        <div className="flex flex-row mb-4 mr-auto left-0">
+          <div className="relative">
+            <img
+              src={
+                selectedImage
+                  ? URL.createObjectURL(selectedImage)
+                  : student.avatar
+              }
+              alt="Фото профиля"
+              className="w-40 h-40 rounded-full hover:bg-black hover:opacity-50"
+              onClick={handleUploadClick}
+            />
+            {/* <div class="absolute inset-0 "></div> */}
+            <input
+              type="file"
+              id="avatarInput"
+              style={{ display: "none" }}
+              onChange={handleFileUpload}
+            />
+          </div>
+          <div className="ml-5">
+            <h2 className="text-xl font-bold">{student.name} #{student.ratingFaculty}</h2>
+            <br />
+            <p className="text-gray-600"> Факультет: {student.faculty}</p>
+            <p className="text-gray-600">Кафедра: {student.department}</p>
+            <p className="text-gray-600">Поток: {student.flow}</p>
+            <p className="text-gray-600">Группа: {student.group}</p>
+          </div>
         </div>
-        <div className="">
-          <h2 className="text-xl font-bold">{student.name}</h2>
-          <p className="text-gray-600"> Факультет: {student.faculty}</p>
-          <p className="text-gray-600">Кафедра: {student.department}</p>
-          <p className="text-gray-600">Поток: {student.flow}</p>
-          <p className="text-gray-600">Группа: {student.group}</p>
+
+        {/* Рейтинг, Звезды и достижения */}
+        <div className="ml-auto px-10 right-0">
+          {/* <div className="mb-4">
+            {" "}
+            <h3 className="text-lg font-semibold">
+              Место в рейтинге: {student.ratingFaculty}
+            </h3>
+          </div> */}
+
+          <div className="mb-4">
+            <h3 className="flex flex-row text-lg font-semibold"> 
+            
+              <img
+                src="../../public/star.png"
+                alt="Звезда"
+                className="w-6 h-6 mr-2"
+              /> 
+              {student.stars}
+            </h3>
+          </div>
+
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold">Достижения:</h3>
+            <div className="flex items-center">
+              <img
+                src="../../public/science.png"
+                alt="Наука"
+                className="w-6 h-6 mr-2"
+              />
+              <p className="text-gray-600">{student.science.length}</p>
+            </div>
+            {/* Другие разделы достижений аналогично */}
+          </div>
         </div>
+        
       </div>
 
-      <div className="mb-4">
-        {" "}
-        <h3 className="text-lg font-semibold">
-          Место в рейтинге: {student.ratingFaculty}
-        </h3>
-      </div>
+      <hr class="h-px my-8 bg-gray-200 border-0"></hr>
 
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold">Звездочки: {student.stars}</h3>
-      </div>
-
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold">Достижения:</h3>
-        <div className="flex items-center">
-          <img
-            src="../../public/science.png"
-            alt="Наука"
-            className="w-6 h-6 mr-2"
-          />
-          <p className="text-gray-600">{student.science.length}</p>
-        </div>
-        {/* Другие разделы достижений аналогично */}
-      </div>
-
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold">Фотографии публикаций:</h3>
-        <div className="grid grid-cols-1 gap-4 max-w-sm">
+      
+      <div className="flex flex-col grid justify-items-center my-4">
+        <h3 className="text-lg font-semibold mb-4">Фотографии публикаций</h3>
+        <div className="grid grid-cols-1 gap-4 max-w-xl">
           {student.publication.map((post, index) => (
             <div key={index}>
               {selectedPostIndex === index ? (
@@ -108,7 +127,7 @@ const ProfileStudent = () => {
               ) : (
                 <div
                   key={index}
-                  className="w-full h-auto cursor-pointer hover:opacity-50"
+                  className="w-full h-auto cursor-pointer hover:opacity-50 "
                   onClick={() => handlePostClick(index)}
                 >
                   {post.image && (

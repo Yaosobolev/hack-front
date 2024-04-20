@@ -11,7 +11,7 @@ const DefaultLayout = () => {
 
   return (
     <>
-      <div className="dark:bg-boxdark-2 dark:text-bodydark bg-amber-100  h-screen relative  ">
+      <div className="dark:bg-boxdark-2 dark:text-bodydark bg-sky-200	  h-screen relative  ">
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <div className="max-w-screen-xl mx-auto flex flex-1 h-[calc(100%-100px)]">
           <div className=" overflow-hidden mt-7  flex flex-1 ">
