@@ -14,7 +14,7 @@ import Post from "./pages/Post";
 import ProfileStudent from "./pages/ProfileStudent";
 import ProfileUniversity from "./pages/ProfileUniversity";
 import Rating from "./pages/Rating";
-
+import Page from "./pages/landing/page.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +51,7 @@ const router = createBrowserRouter([
             path: "/rating",
             element: <Rating />,
           },
+          
           {
             path: "/profile",
             element: <ProfileStudent />,
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "/landing",
+        element: <Page />
+      },  
     ],
   },
 ]);
