@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import logo from "../../public/";
 
 export const Postblock = ({ publication }) => {
   function truncateDescription(description, maxLength) {

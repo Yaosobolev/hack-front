@@ -6,14 +6,14 @@ import Home from "./pages/Home.jsx";
 
 import "./index.css";
 import AuthLayout from "./layouts/AuthLayout.jsx";
+import DefaultLayout from "./layouts/DefaultLayout.jsx";
+import Admin from "./pages/admin";
 import Login from "./pages/auth/Login.jsx";
 import Registration from "./pages/auth/Registration.jsx";
-import DefaultLayout from "./layouts/DefaultLayout.jsx";
 import Post from "./pages/Post.jsx";
-import Rating from "./pages/Rating.jsx";
 import ProfileStudent from "./pages/ProfileStudent.jsx";
 import ProfileUniversity from "./pages/ProfileUniversity.jsx";
-import Admin from "./pages/admin/index.jsx";
+import Rating from "./pages/Rating.jsx";
 
 const router = createBrowserRouter([
   {

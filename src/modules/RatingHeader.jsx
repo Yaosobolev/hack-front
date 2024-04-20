@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import {
-  university,
   city,
+  department,
   faculty,
   flow,
-  department,
   group,
   section,
+  university,
 } from "../TESTDATA/Post";
 import { FilterInput } from "../components";
 
@@ -16,10 +16,7 @@ export const RatingHeader = () => {
 
   const handleChange = (event, selectName) => {
     const { value } = event.target;
-    if (
-      !selectedItems[selectName] ||
-      !selectedItems[selectName].includes(value)
-    ) {
+    if (!selectedItems[selectName]?.includes(value)) {
       setSelectedItems({
         ...selectedItems,
         [selectName]: [...(selectedItems[selectName] || []), value],

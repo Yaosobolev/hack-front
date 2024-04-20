@@ -24,35 +24,30 @@ export const FilterInput = ({
           );
         })}
       </select>
-      <div className="flex flex-wrap  ">
-        {selectedItems[selectName] &&
-          selectedItems[selectName].map((item, index) => (
-            <span
-              key={index}
-              className="bg-gray-300 p-1 m-1 flex items-center rounded cursor-pointer  "
-              // onMouseEnter={() => setHoveredIndex(index)}
-              // onMouseLeave={() => setHoveredIndex(null)}
+      <div className="flex flex-wrap">
+        {selectedItems[selectName]?.map((item, index) => (
+          <span
+            key={index}
+            className="bg-gray-300 p-1 m-1 flex items-center rounded cursor-pointer"
+          >
+            {item}
+            <svg
+              className="h-4 w-4 block  m-0 cursor-pointer text-gray-600"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              onClick={() => handleRemove(selectName, item)}
             >
-              {item}
-              {/* {hoveredIndex === index && ( */}
-              <svg
-                className="h-4 w-4 block  m-0 cursor-pointer text-gray-600"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                onClick={() => handleRemove(selectName, item)}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-              {/* )} */}
-            </span>
-          ))}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </span>
+        ))}
       </div>
     </div>
   );
