@@ -11,7 +11,6 @@ const Login = () => {
     setIsAuth(true);
   };
 
-  //   const isAuth = () => {};
   console.log(isAuth);
 
   return (

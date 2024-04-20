@@ -1,6 +1,12 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
-export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
+type SidebarProps = {
+  sidebarOpen: boolean;
+  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <div
       className={` inset-y-0 left-0 z-40 w-64 fixed  bg-white rounded-2xl  lg:static lg:inset-auto lg:translate-x-0 transition-transform duration-200 ease-in-out transform ${
@@ -62,3 +68,5 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     </div>
   );
 };
+
+export default Sidebar;
