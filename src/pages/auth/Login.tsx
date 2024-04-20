@@ -1,5 +1,6 @@
 import React from "react";
 import "../../App.css";
+import * as Api from "../../api";
 
 import { Link } from "react-router-dom";
 
@@ -11,6 +12,9 @@ const Login = () => {
 
   const onSubmit = async (ev) => {
     ev.preventDefault();
+
+    const { data } = await Api.auth.login(blank);
+    
     console.log(blank);
   };
 
@@ -65,7 +69,7 @@ const Login = () => {
       </form>
 
       <span>
-        У вас нету аккаунта?{" "}
+        У вас нет аккаунта?{" "}
         <Link to="/auth/register/student/" className="text-red-400">
           Зарегистрируйтесь
         </Link>

@@ -1,4 +1,4 @@
-export interface IRegister {
+export interface IRegisterStudent {
   email: string;
   firstname: string;
   lastname: string;
@@ -6,6 +6,8 @@ export interface IRegister {
   passwordRepeat: string;
   group_id: number;
 }
+
+export interface IRegisterDelegate extends Omit<IRegisterStudent, "group_id"> {}
 
 export type TResponse = {
   data: IToken;
@@ -18,4 +20,9 @@ export interface IToken {
   refresh_token: string;
   refresh_token_expired_at: Date;
   user_id: number;
+}
+
+export interface ILogin {
+  email: string;
+  password: string;
 }

@@ -1,22 +1,17 @@
 import React from "react";
-import { FaArrowRight } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "../../App.css";
 import { SelectRegistrationBlank } from "../../redux/registrationBlank/selector";
 import { changeBlank } from "../../redux/registrationBlank/slice";
 import { useAppDispatch } from "../../redux/store";
-
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
+import * as Api from "../../api";
 
 const StudentRegistration = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const [currentTab, setCurrentTab] = React.useState("student");
   const [blank, setBlank] = React.useState({
     firstname: "",
     lastname: "",
@@ -31,15 +26,42 @@ const StudentRegistration = () => {
     console.log(registrationBlank);
   }, []);
 
-  const onSubmit = () => {
+  const onSubmit = async (ev) => {
+    ev.preventDefault();
     dispatch(changeBlank(blank));
 
-    navigate("university");
+    if (currentTab === "student") {
+      return navigate("university");
+    }
+
+    const { data } = await Api.auth.registerDelegate(blank);
+
+    localStorage.setItem("access_token", data.access_token);
+    localStorage.setItem("refresh_token", data.refresh_token);
+
+    console.log(data);
   };
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mb-4">Создайте профиль</h2>
+      <h2 className="text-2xl font-semibold mb-4 flex flex-row">
+        Создайте профиль{" "}
+        <h2
+          className={`${
+            currentTab === "student" ? "_underline" : "_default"
+          } ml-4`}
+          onClick={() => setCurrentTab("student")}
+        >
+          Студента
+        </h2>
+        <i className="mx-2">|</i>
+        <h2
+          className={currentTab === "delegate" ? "_underline" : "_default"}
+          onClick={() => setCurrentTab("delegate")}
+        >
+          Администратора
+        </h2>
+      </h2>
 
       <form onSubmit={onSubmit}>
         <div className="mb-4 relative">
@@ -141,12 +163,12 @@ const StudentRegistration = () => {
           type="submit"
           className="mt-2 w-full bg-blue-500 text-white py-3 px-4 text-xl flex flex-row items-center justify-center rounded hover:bg-blue-600"
         >
-          Дальше <FaArrowRight className="mx-2" />
+          {currentTab === "student" ? "Дальше" : "Зарегистрироваться"}
         </button>
       </form>
       <span className="text-lg">
         Уже есть аккаунта?{" "}
-        <Link to="/login" className="text-blue-600">
+        <Link to="/auth/login" className="text-blue-600">
           Войти
         </Link>
       </span>

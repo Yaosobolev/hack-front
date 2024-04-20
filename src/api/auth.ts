@@ -1,20 +1,29 @@
 import axios from "../core/";
-import { IRegister, TResponse } from "./interface/auth";
+import {
+  ILogin,
+  IRegisterDelegate,
+  IRegisterStudent,
+  TResponse,
+} from "./interface/auth";
 
-// export const login = async (val: loginFormDto): Promise<loginResponseDto> => {
-//   const { data } = await axios.post("/auth/signin", val);
+export const login = async (val: ILogin): Promise<TResponse> => {
+  const { data } = await axios.post("/auth/login", val);
 
-//   return data;
-// };
+  return data;
+};
 
-export const registerStudent = async (val: IRegister): Promise<TResponse> => {
+export const registerStudent = async (
+  val: IRegisterStudent
+): Promise<TResponse> => {
   const { data } = await axios.post("/auth/register/student", val);
 
   return data;
 };
 
-// export const getMe = async (): Promise<User> => {
-//   const { data } = await axios.get("/user/me");
+export const registerDelegate = async (
+  val: IRegisterDelegate
+): Promise<TResponse> => {
+  const { data } = await axios.post("/auth/register/delegate", val);
 
-//   return data;
-// };
+  return data;
+};
