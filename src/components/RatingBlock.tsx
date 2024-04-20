@@ -24,6 +24,7 @@ export const RatingBlock: React.FC<UserProps> = ({ user }) => {
 
   const handleFavorite = () => {
     setFavorite(!favorite);
+    console.log("2");
   };
   console.log(favorite);
 
@@ -52,8 +53,8 @@ export const RatingBlock: React.FC<UserProps> = ({ user }) => {
           <FaStar className="text-yellow-300" />
           <span className="block">{stars}</span>
         </div>
-        <button onClick={handleFavorite} className={`  `}>
-          {isFavorite ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
+        <button onClick={() => handleFavorite()} className={`  `}>
+          {favorite ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
         </button>
       </div>
     </div>

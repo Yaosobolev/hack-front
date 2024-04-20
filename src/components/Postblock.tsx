@@ -8,7 +8,7 @@ function truncateDescription(description, maxLength) {
   }
 }
 
-export const Postblock = ({ publication }) => {
+export const PostBlock = ({ publication, handleClick }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [isLiked, SetIsLiked] = useState(false);
   const [countLikes, setCountLikes] = useState(publication.likes);
@@ -42,8 +42,12 @@ export const Postblock = ({ publication }) => {
     console.log("Отправлен комментарий:", commentText);
     setCommentText("");
   };
+
   return (
-    <div className="block max-w-full  bg-white rounded-2xl">
+    <div
+      className="block max-w-full  bg-white rounded-2xl"
+      onClick={() => handleClick(publication.id)}
+    >
       <div className=" p-4 mb-4">
         <div className="flex items-center mb-2">
           <img
