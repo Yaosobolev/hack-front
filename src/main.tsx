@@ -4,16 +4,19 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
 
+import { Provider } from "react-redux";
 import "./index.css";
 import AuthLayout from "./layouts/AuthLayout";
 import DefaultLayout from "./layouts/DefaultLayout";
 import Admin from "./pages/admin";
+import FinalRegistration from "./pages/auth/FinalRegistration";
 import Login from "./pages/auth/Login";
-import Registration from "./pages/auth/Registration";
+import StudentRegistration from "./pages/auth/StudentRegistration";
 import Post from "./pages/Post";
 import ProfileStudent from "./pages/ProfileStudent";
 import ProfileUniversity from "./pages/ProfileUniversity";
 import Rating from "./pages/Rating";
+import store from "./redux/store";
 
 const router = createBrowserRouter([
   {
@@ -29,8 +32,17 @@ const router = createBrowserRouter([
             element: <Login />,
           },
           {
-            path: "registration",
-            element: <Registration />,
+            path: "register",
+            children: [
+              {
+                path: "student",
+                children: [
+                  { path: "", element: <StudentRegistration /> },
+                  { path: "university", element: <FinalRegistration /> },
+                ],
+              },
+              { path: "delegate", element: <FinalRegistration /> },
+            ],
           },
         ],
       },
@@ -71,6 +83,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
