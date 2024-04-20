@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { GrAchievement } from "react-icons/gr";
 import { FaArrowLeft, FaArrowRight, FaPenAlt } from "react-icons/fa";
 import { student } from "../TESTDATA/User";
-import { PostBlock } from "../components";
+import PostBlock from "../components/Postblock";
 
 const ProfileStudent = () => {
   const [selectedImage, setSelectedImage] = useState(null);

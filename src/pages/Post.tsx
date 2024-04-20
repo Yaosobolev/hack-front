@@ -1,7 +1,7 @@
 import React from "react";
-import { PostBlock } from "../components";
-import { PostHeader } from "../modules";
 import { publication } from "../TESTDATA/Post";
+import PostBlock from "../components/Postblock";
+import { PostHeader } from "../modules";
 
 const Post = () => {
   return (

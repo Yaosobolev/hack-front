@@ -1,36 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../App.css";
 
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [blank, setBlank] = React.useState({
+    email: "",
+    password: "",
+  });
 
-  const login = (e) => {
-    e.preventDefault();
-    setIsAuth(true);
+  const onSubmit = async (ev) => {
+    ev.preventDefault();
+    console.log(blank);
   };
-
-  console.log(isAuth);
 
   return (
     <>
-      {isAuth && <Navigate to="/" replace={true} />}
       <h2 className="text-2xl font-semibold mb-4">Войдите в аккаунт</h2>
 
-      <form onSubmit={login}>
+      <form onSubmit={onSubmit}>
         <div className="mb-4 relative">
           <input
-            id="username"
-            type="text"
+            id="email"
+            type="email"
             className="mt-1  block w-full rounded border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 pl-3 pt-4"
             required
+            value={blank.email}
+            onChange={(ev) =>
+              setBlank((prev) => ({ ...prev, email: ev.target.value }))
+            }
           />
           <label
-            htmlFor="username"
+            htmlFor="email"
             className="absolute left-2 top-3 text-black transition-all duration-300"
           >
-            Имя пользователя
+            Email
           </label>
         </div>
         <div className="mb-2 relative">
@@ -39,6 +43,10 @@ const Login = () => {
             type="password"
             className="mt-1  block w-full rounded border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 pl-3 pt-4"
             required
+            value={blank.password}
+            onChange={(ev) =>
+              setBlank((prev) => ({ ...prev, password: ev.target.value }))
+            }
           />
           <label
             htmlFor="password"
@@ -47,9 +55,7 @@ const Login = () => {
             Пароль
           </label>
         </div>
-        <div className="text-right mb-4">
-          <Link to="../registration">Восстановить пароль</Link>
-        </div>
+
         <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
@@ -57,9 +63,10 @@ const Login = () => {
           Войти
         </button>
       </form>
+
       <span>
         У вас нету аккаунта?{" "}
-        <Link to="../registration" className="text-red-400">
+        <Link to="/auth/register/student/" className="text-red-400">
           Зарегистрируйтесь
         </Link>
       </span>

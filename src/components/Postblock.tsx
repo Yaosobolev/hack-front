@@ -8,7 +8,7 @@ function truncateDescription(description, maxLength) {
   }
 }
 
-export const PostBlock = ({ publication, handleClick }) => {
+const PostBlock = ({ publication, handleClick }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [isLiked, SetIsLiked] = useState(false);
   const [countLikes, setCountLikes] = useState(publication.likes);
@@ -182,3 +182,5 @@ export const PostBlock = ({ publication, handleClick }) => {
     </div>
   );
 };
+
+export default PostBlock;
