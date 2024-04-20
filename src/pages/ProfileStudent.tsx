@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FaStar } from "react-icons/fa";
+import { GrAchievement } from "react-icons/gr";
 import { student } from "../TESTDATA/User";
 import { Postblock } from "../components";
 
@@ -26,6 +28,7 @@ const ProfileStudent = () => {
   const handleClosePostblock = () => {
     setSelectedPostIndex(null);
   };
+
   const handleUploadClick = () => {
     document.getElementById("avatarInput").click();
   };
@@ -43,10 +46,9 @@ const ProfileStudent = () => {
                   : student.avatar
               }
               alt="Фото профиля"
-              className="w-40 h-40 rounded-full hover:bg-black hover:opacity-50"
+              className="w-40 h-40 rounded-full hover:bg-black hover:opacity-50 cursor-pointer"
               onClick={handleUploadClick}
             />
-            {/* <div class="absolute inset-0 "></div> */}
             <input
               type="file"
               id="avatarInput"
@@ -55,56 +57,36 @@ const ProfileStudent = () => {
             />
           </div>
           <div className="ml-5">
-            <h2 className="text-xl font-bold">{student.name} #{student.ratingFaculty}</h2>
-            <br />
-            <p className="text-gray-600"> Факультет: {student.faculty}</p>
+            <div className="flex flex-row items-center">
+              <h2 className="text-xl font-bold">
+                #{student.ratingFaculty} {student.name}
+              </h2>
+              <FaStar className="text-yellow-300 ml-2 " />
+              <h2 className="text-xl font-bold">{student.stars}</h2>
+            </div>
+            <p className="text-gray-600">Факультет: {student.faculty}</p>
             <p className="text-gray-600">Кафедра: {student.department}</p>
             <p className="text-gray-600">Поток: {student.flow}</p>
             <p className="text-gray-600">Группа: {student.group}</p>
           </div>
         </div>
 
-        {/* Рейтинг, Звезды и достижения */}
         <div className="ml-auto px-10 right-0">
-          {/* <div className="mb-4">
-            {" "}
-            <h3 className="text-lg font-semibold">
-              Место в рейтинге: {student.ratingFaculty}
-            </h3>
-          </div> */}
-
-          <div className="mb-4">
-            <h3 className="flex flex-row text-lg font-semibold"> 
-            
-              <img
-                src="../../public/star.png"
-                alt="Звезда"
-                className="w-6 h-6 mr-2"
-              /> 
-              {student.stars}
-            </h3>
-          </div>
-
           <div className="mb-4">
             <h3 className="text-lg font-semibold">Достижения:</h3>
-            <div className="flex items-center">
-              <img
-                src="../../public/science.png"
-                alt="Наука"
-                className="w-6 h-6 mr-2"
-              />
-              <p className="text-gray-600">{student.science.length}</p>
+            <div className="flex items-center cursor-pointer">
+              <GrAchievement className="text-xl mr-2" />
+              <h1 className="text-gray-600 text-xl">
+                {student.science.length}
+              </h1>
             </div>
-            {/* Другие разделы достижений аналогично */}
           </div>
         </div>
-        
       </div>
 
-      <hr class="h-px my-8 bg-gray-200 border-0"></hr>
+      <hr className="h-px my-8 bg-gray-200 border-0"></hr>
 
-      
-      <div className="flex flex-col grid justify-items-center my-4">
+      <div className="flex-col grid justify-items-center my-4">
         <h3 className="text-lg font-semibold mb-4">Фотографии публикаций</h3>
         <div className="grid grid-cols-1 gap-4 max-w-xl">
           {student.publication.map((post, index) => (
@@ -118,10 +100,7 @@ const ProfileStudent = () => {
                     className="max-w-2xl z-50 shadow bg-white p-8 rounded-lg "
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <Postblock
-                      publication={post}
-                      onClose={handleClosePostblock}
-                    />
+                    <Postblock publication={post} />
                   </div>
                 </div>
               ) : (

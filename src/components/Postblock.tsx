@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 
-export const Postblock = ({ publication }) => {
-  function truncateDescription(description, maxLength) {
-    if (description.split(" ").length > maxLength) {
-      return description.split(" ").slice(0, maxLength).join(" ") + "...";
-    } else {
-      return description;
-    }
+function truncateDescription(description, maxLength) {
+  if (description.split(" ").length > maxLength) {
+    return description.split(" ").slice(0, maxLength).join(" ") + "...";
+  } else {
+    return description;
   }
+}
+
+export const Postblock = ({ publication }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [isLiked, SetIsLiked] = useState(false);
   const [countLikes, setCountLikes] = useState(publication.likes);
