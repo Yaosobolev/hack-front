@@ -1,5 +1,5 @@
 export * from "./FilterInput";
 export * from "./Header";
-export * from "./Postblock";
+export * from "./PostBlock";
 export * from "./RatingBlock";
 export * from "./Sidebar";

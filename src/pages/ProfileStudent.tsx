@@ -1,38 +1,57 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { GrAchievement } from "react-icons/gr";
+import { FaArrowLeft, FaArrowRight, FaPenAlt } from "react-icons/fa";
 import { student } from "../TESTDATA/User";
-import { Postblock } from "../components";
+import { PostBlock } from "../components";
 
 const ProfileStudent = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [selectedPostIndex, setSelectedPostIndex] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const toggleModal = (index) => {
-    setIsModalOpen(!isModalOpen);
-    setSelectedPostIndex(index);
-    console.log("S");
-  };
+  const [selectedPostIndex, setSelectedPostIndex] = useState<number[]>([]);
+  const [isHivered, setIsHobered] = useState<boolean>(false);
+  console.log(isHivered);
 
+  const descRef = useRef<HTMLDivElement>(null);
+  console.log(descRef);
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
-    console.log("Selected file:", file);
     setSelectedImage(file);
   };
-  const handlePostClick = (index) => {
-    setSelectedPostIndex(index);
+  const handlePostClick = (id) => {
+    // setSelectedPostIndex(index);
+    if (selectedPostIndex.includes(id)) {
+      setSelectedPostIndex(selectedPostIndex.filter((index) => index !== id));
+    } else {
+      setSelectedPostIndex([...selectedPostIndex, id]);
+    }
+    console.log(selectedPostIndex);
   };
 
-  const handleClosePostblock = () => {
-    setSelectedPostIndex(null);
-  };
+  // const handleClosePostblock = () => {
+  //   setSelectedPostIndex(null);
+  // };
 
   const handleUploadClick = () => {
     document.getElementById("avatarInput").click();
   };
+  const goToPrevSlide = () => {
+    const newIndex =
+      (currentIndex - 1 + student.publication.length) %
+      student.publication.length;
+    setCurrentIndex(newIndex);
+  };
 
+  const goToNextSlide = () => {
+    const newIndex = (currentIndex + 1) % student.publication.length;
+    setCurrentIndex(newIndex);
+  };
+  const limitedStudents = student.publication.slice(
+    currentIndex,
+    currentIndex + 3
+  );
   return (
     <div className="p-4 bg-white rounded-lg relative ">
       <div className="flex flex-row mb-4">
@@ -70,15 +89,67 @@ const ProfileStudent = () => {
             <p className="text-gray-600">Группа: {student.group}</p>
           </div>
         </div>
+        <div
+          className="text-gray-600 w-1/3 transition-all hover:opacity-50 relative cursor-pointer"
+          ref={descRef}
+          onMouseEnter={() => setIsHobered(true)}
+          onMouseLeave={() => setIsHobered(false)}
+        >
+          <span className="font-bold cursor-pointer">О себе:</span>{" "}
+          <textarea
+            name=""
+            id=""
+            className="appearance-none border-none  resize-none size-full p-0 text-sm focus:border-slate-50"
+          >
+            {student.description}
+          </textarea>
+          {isHivered && (
+            <div className="absolute top-1/2 left-1/2 w-20 ">
+              <FaPenAlt className="opacity-1 " />
+            </div>
+          )}
+        </div>
 
         <div className="ml-auto px-10 right-0">
           <div className="mb-4">
             <h3 className="text-lg font-semibold">Достижения:</h3>
-            <div className="flex items-center cursor-pointer">
-              <GrAchievement className="text-xl mr-2" />
-              <h1 className="text-gray-600 text-xl">
-                {student.science.length}
-              </h1>
+            <div className="grid grid-cols-2 items-center justify-between gap-4">
+              <div className="flex  items-center justify-around cursor-pointer">
+                <img
+                  src="../../public/science.png"
+                  className="text-xl mr-2 max-w-10"
+                />
+                <h1 className="text-gray-600 text-xl">
+                  {student.science.length}
+                </h1>
+              </div>
+              <div className="flex  items-center  justify-around cursor-pointer">
+                <img
+                  src="../../public/sport.png"
+                  className="text-xl mr-2 max-w-10"
+                />
+                <h1 className="text-gray-600 text-xl">
+                  {student.science.length}
+                </h1>
+              </div>
+              <div className="flex  items-center w-full justify-around cursor-pointer">
+                <img
+                  src="../../public/creativity.png"
+                  className="text-xl mr-2 max-w-10"
+                />
+                <h1 className="text-gray-600 text-xl">
+                  {student.science.length}
+                </h1>
+              </div>
+              <div className="flex  items-center w-full justify-around cursor-pointer">
+                <img
+                  src="../../public/volunteering.png"
+                  className="text-xl mr-2 max-w-10"
+                />
+                <h1 className="text-gray-600 text-xl">
+                  {student.science.length}
+                </h1>
+              </div>
             </div>
           </div>
         </div>
@@ -88,42 +159,39 @@ const ProfileStudent = () => {
 
       <div className="flex-col grid justify-items-center my-4">
         <h3 className="text-lg font-semibold mb-4">Фотографии публикаций</h3>
-        <div className="grid grid-cols-1 gap-4 max-w-xl">
-          {student.publication.map((post, index) => (
-            <div key={index}>
-              {selectedPostIndex === index ? (
-                <div
-                  className="flex justify-center z-50  w-full h-full "
-                  onClick={handleClosePostblock}
-                >
-                  <div
-                    className="max-w-2xl z-50 shadow bg-white p-8 rounded-lg "
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Postblock publication={post} />
-                  </div>
-                </div>
+        <div className="grid grid-cols-3 gap-4 relative">
+          {limitedStudents.map((student) => (
+            <div
+              key={student.id}
+              className="relative flex items-center transition-all"
+            >
+              {selectedPostIndex.includes(student.id) ? (
+                <PostBlock
+                  publication={student}
+                  handleClick={handlePostClick}
+                />
               ) : (
-                <div
-                  key={index}
-                  className="w-full h-auto cursor-pointer hover:opacity-50 "
-                  onClick={() => handlePostClick(index)}
-                >
-                  {post.image && (
-                    <img
-                      src={post.image}
-                      alt={`Фото публикации ${index + 1}`}
-                    />
-                  )}
-                  {!post.image && (
-                    <div className="bg-gray-300 w-full h-80 flex justify-center items-center">
-                      Фото отсутствует
-                    </div>
-                  )}
-                </div>
+                <img
+                  src={student.image}
+                  alt={`Student ${student.id}`}
+                  className="w-full h-auto cursor-pointer"
+                  onClick={() => handlePostClick(student.id)}
+                />
               )}
             </div>
           ))}
+          <button
+            className="absolute top-1/2 -left-3 transform -translate-y-1/2 bg-black/50 text-white px-4 py-2 rounded-lg"
+            onClick={goToPrevSlide}
+          >
+            <FaArrowLeft />
+          </button>
+          <button
+            className="absolute top-1/2 -right-3 transform -translate-y-1/2 bg-black/50 text-white px-4 py-2 rounded-lg"
+            onClick={goToNextSlide}
+          >
+            <FaArrowRight />
+          </button>
         </div>
       </div>
     </div>
