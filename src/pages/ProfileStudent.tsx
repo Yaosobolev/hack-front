@@ -37,6 +37,7 @@ const ProfileStudent = () => {
   const handleUploadClick = () => {
     document.getElementById("avatarInput").click();
   };
+  
   const goToPrevSlide = () => {
     const newIndex =
       (currentIndex - 1 + student.publication.length) %

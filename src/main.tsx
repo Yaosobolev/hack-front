@@ -41,7 +41,6 @@ const router = createBrowserRouter([
                   { path: "university", element: <FinalRegistration /> },
                 ],
               },
-              { path: "delegate", element: <FinalRegistration /> },
             ],
           },
         ],
