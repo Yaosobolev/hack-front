@@ -17,6 +17,7 @@ import ProfileStudent from "./pages/ProfileStudent";
 import ProfileUniversity from "./pages/ProfileUniversity";
 import Rating from "./pages/Rating";
 import store from "./redux/store";
+import Page from "./pages/landing/Page";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
             element: <Admin />,
           },
         ],
+      },
+      {
+        path: "/landing",
+        element: <Page />,
       },
     ],
   },
