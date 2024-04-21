@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CurrentUser } from "./type";
+import { fetchUser } from "./asyncAction";
 
 const initialState: CurrentUser = {
   firstname: "",
   lastname: "",
   email: "",
-  id: 0,
+  id: "",
   type: "",
   group_id: 0,
   created_at: "",
@@ -25,6 +26,7 @@ const userSlice = createSlice({
       state.created_at = action.payload.created_at;
     },
   },
+  extraReducers(builder) {},
 });
 
 export const { setUser } = userSlice.actions;

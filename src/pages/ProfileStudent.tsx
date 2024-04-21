@@ -3,17 +3,36 @@ import { FaStar } from "react-icons/fa";
 import { FaArrowLeft, FaArrowRight, FaPenAlt } from "react-icons/fa";
 import { student } from "../TESTDATA/User";
 import { ProfilePostBlock } from "../components";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { checkAuth } from "../utils/checkAuth";
+import { useSelector } from "react-redux";
+import { SelectUser } from "../redux/user/selector";
+import { get } from "../api/users";
 
 const ProfileStudent = () => {
   checkAuth();
+  const { firstname, lastname, group_id } = useSelector(SelectUser);
+  const { id } = useParams();
 
-  const location = useLocation();
-  console.log(location);
-  // Удалить
-  const id = 1;
-  // Удалить
+  const [userData, setUserData] = useState({
+    firstname: "",
+    lastname: "",
+  });
+
+  const getUser = async (id: any) => {
+    try {
+      const res = await get(Number(id));
+      const { data } = await res;
+      setUserData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getUser(id);
+  }, []);
+
+  console.log(userData.firstname);
 
   // Для фото
   const [selectedImage, setSelectedImage] = useState(null);
@@ -140,8 +159,8 @@ const ProfileStudent = () => {
           </div>
           <div className="ml-5">
             <div className="flex flex-row items-center">
-              <h2 className="text-xl font-bold">
-                #{student.ratingFaculty} {student.name}
+              <h2 className="text-lg font-bold">
+                #{1} {userData.firstname + " " + userData.lastname}
               </h2>
               <FaStar className="text-yellow-300 ml-2 " />
               <h2 className="text-xl font-bold">{student.stars}</h2>
