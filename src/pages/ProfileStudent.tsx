@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { GrAchievement } from "react-icons/gr";
 import { FaArrowLeft, FaArrowRight, FaPenAlt } from "react-icons/fa";
 import { student } from "../TESTDATA/User";
 import PostBlock from "../components/Postblock";
@@ -12,32 +11,24 @@ const ProfileStudent = () => {
 
   const [selectedPostIndex, setSelectedPostIndex] = useState<number[]>([]);
   const [isHivered, setIsHobered] = useState<boolean>(false);
-  console.log(isHivered);
 
   const descRef = useRef<HTMLDivElement>(null);
-  console.log(descRef);
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     setSelectedImage(file);
   };
   const handlePostClick = (id) => {
-    // setSelectedPostIndex(index);
     if (selectedPostIndex.includes(id)) {
       setSelectedPostIndex(selectedPostIndex.filter((index) => index !== id));
     } else {
       setSelectedPostIndex([...selectedPostIndex, id]);
     }
-    console.log(selectedPostIndex);
   };
-
-  // const handleClosePostblock = () => {
-  //   setSelectedPostIndex(null);
-  // };
 
   const handleUploadClick = () => {
-    document.getElementById("avatarInput").click();
+    document.getElementById("avatarInput")?.click();
   };
-  
+
   const goToPrevSlide = () => {
     const newIndex =
       (currentIndex - 1 + student.publication.length) %

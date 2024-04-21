@@ -14,7 +14,6 @@ const registrationBlankSlice = createSlice({
   initialState,
   reducers: {
     changeBlank(state, action: PayloadAction<RegistrationBlank>) {
-      console.log(state);
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
       state.email = action.payload.email;

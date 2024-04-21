@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RatingBlock } from "../components";
-import { RatingHeader } from "../modules";
+import { FilterHeader } from "../modules";
+import { IUniversityResponse } from "../api/interface/IUniversity";
 
 export type User = {
   id: number;
@@ -12,36 +13,6 @@ export type User = {
   isFavorite: boolean;
 };
 
-export const users: User[] = [
-  {
-    id: 0,
-    name: "Alex",
-    faculty: "Имит",
-    flow: "Пинж",
-    group: "1",
-    stars: 2,
-    isFavorite: false,
-  },
-  {
-    id: 1,
-    name: "Jhon",
-    faculty: "Имит",
-    flow: "Пинж",
-    group: "1",
-    stars: 2,
-    isFavorite: true,
-  },
-  {
-    id: 2,
-    name: "Alex",
-    faculty: "Имит",
-    flow: "Пинж",
-    group: "1",
-    stars: 2,
-    isFavorite: false,
-  },
-];
-
 const Rating = () => {
   return (
     <div className="flex flex-row justify-between gap-x-4">
@@ -50,12 +21,12 @@ const Rating = () => {
           <h2 className=" p-4 mb-4 text-center text-4xl">Рейтинг студентов</h2>
         </div>
 
-        {users.map((user, index) => (
+        {/* {users.map((user, index) => (
           <RatingBlock key={user?.id || index} user={user} />
-        ))}
+        ))} */}
       </div>
       <div>
-        <RatingHeader />
+        <FilterHeader name="Rating" />
       </div>
     </div>
   );

@@ -14,8 +14,6 @@ const Login = () => {
     ev.preventDefault();
 
     const { data } = await Api.auth.login(blank);
-    
-    console.log(blank);
   };
 
   return (

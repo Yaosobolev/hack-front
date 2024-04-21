@@ -1,7 +1,7 @@
 import React from "react";
 import { publication } from "../TESTDATA/Post";
 import PostBlock from "../components/Postblock";
-import { PostHeader } from "../modules";
+import { FilterHeader } from "../modules";
 
 const Post = () => {
   return (
@@ -12,7 +12,7 @@ const Post = () => {
         ))}
       </div>
       <div>
-        <PostHeader />
+        <FilterHeader name="Post" />
       </div>
     </div>
   );

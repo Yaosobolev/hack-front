@@ -24,9 +24,7 @@ export const RatingBlock: React.FC<UserProps> = ({ user }) => {
 
   const handleFavorite = () => {
     setFavorite(!favorite);
-    console.log("2");
   };
-  console.log(favorite);
 
   return (
     <div className="block max-w-full  bg-white rounded-2xl">

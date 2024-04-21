@@ -39,7 +39,6 @@ const PostBlock = ({ publication, handleClick }) => {
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
-    console.log("Отправлен комментарий:", commentText);
     setCommentText("");
   };
 

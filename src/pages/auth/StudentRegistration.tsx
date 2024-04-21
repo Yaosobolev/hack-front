@@ -23,7 +23,6 @@ const StudentRegistration = () => {
 
   React.useEffect(() => {
     setBlank(registrationBlank);
-    console.log(registrationBlank);
   }, []);
 
   const onSubmit = async (ev) => {
@@ -38,8 +37,6 @@ const StudentRegistration = () => {
 
     localStorage.setItem("access_token", data.access_token);
     localStorage.setItem("refresh_token", data.refresh_token);
-
-    console.log(data);
   };
 
   return (

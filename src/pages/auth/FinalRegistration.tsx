@@ -35,8 +35,6 @@ const FinalRegistration = () => {
           universityInfo.university.id
         );
 
-        console.log(faculties);
-
         const facultyOptionsMap = faculties.map((faculty) => ({
           value: faculty.name,
           label: faculty.name,
@@ -93,8 +91,6 @@ const FinalRegistration = () => {
           20,
           universityInfo.flow.id
         );
-
-        console.log(groups);
 
         const groupsOptionsMap = groups.map((group) => ({
           value: group.name,
