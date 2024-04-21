@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as Api from "../api";
 import { IUniversity } from "../api/interface/IUniversity";
 import { SelectUser } from "../redux/user/selector";
@@ -8,6 +8,12 @@ import { checkAuth } from "../utils/checkAuth";
 
 const ProfileUniversity = () => {
   const { id } = useParams();
+
+  if (id === "create-university") {
+    const navigate = useNavigate();
+
+    navigate("/create-university");
+  }
 
   checkAuth();
 

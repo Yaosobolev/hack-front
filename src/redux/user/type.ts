@@ -6,4 +6,7 @@ export interface CurrentUser {
   id: string;
   lastname: string;
   type: string;
+  university: {
+    id: number;
+  };
 }
