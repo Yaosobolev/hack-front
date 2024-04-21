@@ -13,6 +13,8 @@ import Admin from "./pages/admin";
 import FinalRegistration from "./pages/auth/FinalRegistration";
 import Login from "./pages/auth/Login";
 import UserRegistration from "./pages/auth/UserRegistration";
+import CreateEvent from "./pages/CreateEvent";
+import CreateUniversity from "./pages/CreateUniversity";
 import Page from "./pages/landing/Page";
 import Post from "./pages/Post";
 import ProfileStudent from "./pages/ProfileStudent";
@@ -80,6 +82,15 @@ const router = createBrowserRouter([
             path: "/achievements/:category/:id",
             element: <Achievement />,
           },
+          {
+            path: "/event/:id",
+            element: <CreateEvent />,
+          },
+          {
+            path: "/create-university",
+            element: <CreateUniversity />,
+          },
+
           // {
           //   path: "/achievements/sport/:id",
           //   element: <Admin />,

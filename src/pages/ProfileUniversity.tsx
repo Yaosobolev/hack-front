@@ -3,14 +3,13 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as Api from "../api";
 import { IUniversity } from "../api/interface/IUniversity";
-import CreateEvent from "../components/CreateEvent";
 import { SelectUser } from "../redux/user/selector";
 import { checkAuth } from "../utils/checkAuth";
 
 const ProfileUniversity = () => {
   const { id } = useParams();
 
-  checkAuth(true);
+  checkAuth();
 
   const user = useSelector(SelectUser);
 
@@ -31,7 +30,7 @@ const ProfileUniversity = () => {
         if (data.delegate_id === parseInt(user.id)) {
           setIsOwner(true);
         }
-
+        console.log(data);
         setUniversity(data);
       } catch (error) {
         throw new Error("University not found " + error);
@@ -42,10 +41,7 @@ const ProfileUniversity = () => {
   }, []);
 
   return (
-    <div className="p-4 bg-white rounded-lg relative flex justify-center">
-      <CreateEvent university_id={1} />
-      {/* <CreateUniversity /> */}
-    </div>
+    <div className="p-4 bg-white rounded-lg relative flex justify-center"></div>
   );
 };
 
