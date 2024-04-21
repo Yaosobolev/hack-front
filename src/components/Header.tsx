@@ -45,8 +45,8 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-white ">
-      <div className="flex max-w-screen-xl mx-auto justify-between items-center p-4  ">
+    <header className="bg-white shadow shadow-zinc-200">
+      <div className="flex container max-w-screen-xl mx-auto justify-between items-center p-4">
         <Link to="/">
           <div className="flex flex-row items-center">
             <PiStudentBold className="text-3xl mr-2" />
@@ -56,7 +56,7 @@ export const Header: React.FC = () => {
 
         {isAuth ? (
           <div className="relative">
-            <div className="flex items-center" onClick={toggleProfile}>
+            <div className="flex items-center cursor-pointer" onClick={toggleProfile}>
               <div>
                 <img
                   src="https://images.genius.com/782d3846b72673a559ef3fcc3b48f4d9.1000x1000x1.jpg"

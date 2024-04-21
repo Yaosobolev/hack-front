@@ -15,7 +15,7 @@ import Login from "./pages/auth/Login";
 import UserRegistration from "./pages/auth/UserRegistration";
 import Page from "./pages/landing/Page";
 import Post from "./pages/Post";
-import ProfileStudent from "./pages/ProfileStudent";
+import Profile from "./pages/profile";
 import ProfileUniversity from "./pages/ProfileUniversity";
 import Rating from "./pages/Rating";
 import store from "./redux/store";
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
           },
           {
             path: "/profile/:id",
-            element: <ProfileStudent />,
+            element: <Profile />,
           },
           {
             path: "/profile-university/:id",
