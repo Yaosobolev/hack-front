@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 
 import { FilterInput } from "../components";
 
+import { useSelector } from "react-redux";
 import {
   fetchAllDepartments,
   fetchAllFaculties,
@@ -12,9 +13,9 @@ import {
   fetchPosts,
   fetchUsers,
 } from "../redux/filterData/asyncActions";
-import { useAppDispatch } from "../redux/store";
 import { selectFilterData } from "../redux/filterData/selectors";
-import { useSelector } from "react-redux";
+import { useAppDispatch } from "../redux/store";
+import { MultiValueGeneric } from "react-select/dist/declarations/src/components/MultiValue";
 
 type FilterHeaderProps = {
   name: string;
@@ -35,8 +36,17 @@ export const FilterHeader: React.FC<FilterHeaderProps> = ({ name }) => {
     dispath(fetchAllDepartments());
     dispath(fetchAllFlows());
     dispath(fetchAllGroups());
-  };
 
+    const selectedItemsMap = [
+      selectedItems.universities,
+      selectedItems.faculties,
+      selectedItems.department,
+      selectedItems.flows,
+      selectedItems.groups,
+    ];
+
+    dispath(fetchUsers(selectedItemsMap));
+  };
   const getResult = () => {
     name === "Post"
       ? dispath(fetchPosts(selectedItems))

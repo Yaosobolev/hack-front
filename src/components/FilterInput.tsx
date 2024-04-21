@@ -23,6 +23,7 @@ export const FilterInput: React.FC<FilterInputProps> = memo(
     handleRemove,
   }) => {
     const defaultValue = itemsData && items.length > 0 ? items[0].name : "";
+
     if (!items) {
       return null;
     }

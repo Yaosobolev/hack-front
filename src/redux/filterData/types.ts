@@ -56,8 +56,31 @@ export type groupsItem = {
   flow_id: number;
 };
 
+export enum UserType {
+  STUDENT,
+  DELEGATE,
+  ADMIN,
+}
+
+export interface IUser {
+  id: number;
+  email: string;
+  password: string;
+  type: UserType;
+  firstname: string;
+  lastname: string;
+  created_at: Date;
+  group_id: number;
+}
+
 export interface groupsRes {
   groups: groupsItem[];
+  total_records: number;
+  total_pages: number;
+}
+
+export interface usersRes {
+  users: IUser[];
   total_records: number;
   total_pages: number;
 }
@@ -68,4 +91,5 @@ export interface FilterDataSliceState {
   departmentsData: departmentsRes;
   flowsData: flowsRes;
   groupsData: groupsRes;
+  usersData: usersRes;
 }

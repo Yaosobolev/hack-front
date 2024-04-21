@@ -1,12 +1,13 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FilterDataSliceState } from "./types";
+import { createSlice } from "@reduxjs/toolkit";
 import {
-  fetchAllUniversities,
-  fetchAllFaculties,
   fetchAllDepartments,
+  fetchAllFaculties,
   fetchAllFlows,
   fetchAllGroups,
+  fetchAllUniversities,
+  fetchUsers,
 } from "./asyncActions";
+import { FilterDataSliceState } from "./types";
 
 const initialState: FilterDataSliceState = {
   universitiesData: {
@@ -31,6 +32,11 @@ const initialState: FilterDataSliceState = {
   },
   groupsData: {
     groups: [],
+    total_records: 0,
+    total_pages: 0,
+  },
+  usersData: {
+    users: [],
     total_records: 0,
     total_pages: 0,
   },
@@ -95,6 +101,17 @@ const filterDataSlice = createSlice({
     });
     builder.addCase(fetchAllGroups.rejected, (state) => {
       state.groupsData = initialState.groupsData;
+    });
+
+    // users
+    builder.addCase(fetchUsers.pending, (state) => {
+      state.usersData = initialState.usersData;
+    });
+    builder.addCase(fetchUsers.fulfilled, (state, action) => {
+      state.usersData = action.payload;
+    });
+    builder.addCase(fetchUsers.rejected, (state) => {
+      state.usersData = initialState.usersData;
     });
   },
 });
