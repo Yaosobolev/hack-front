@@ -3,9 +3,11 @@ import { FaStar } from "react-icons/fa";
 import { FaArrowLeft, FaArrowRight, FaPenAlt } from "react-icons/fa";
 import { student } from "../TESTDATA/User";
 import { ProfilePostBlock } from "../components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const ProfileStudent = () => {
+  const location = useLocation();
+  console.log(location);
   // Удалить
   const id = 1;
   // Удалить

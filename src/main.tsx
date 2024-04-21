@@ -18,6 +18,7 @@ import ProfileUniversity from "./pages/ProfileUniversity";
 import Rating from "./pages/Rating";
 import store from "./redux/store";
 import Page from "./pages/landing/Page";
+import Achievement from "./pages/achievements";
 
 const router = createBrowserRouter([
   {
@@ -76,21 +77,21 @@ const router = createBrowserRouter([
             element: <Admin />,
           },
           {
-            path: "/achievements/science/:id",
-            element: <Admin />,
+            path: "/achievements/:category/:id",
+            element: <Achievement />,
           },
-          {
-            path: "/achievements/sport/:id",
-            element: <Admin />,
-          },
-          {
-            path: "/achievements/creativity/:id",
-            element: <Admin />,
-          },
-          {
-            path: "/achievements/volunteering/:id",
-            element: <Admin />,
-          },
+          // {
+          //   path: "/achievements/sport/:id",
+          //   element: <Admin />,
+          // },
+          // {
+          //   path: "/achievements/creativity/:id",
+          //   element: <Admin />,
+          // },
+          // {
+          //   path: "/achievements/volunteering/:id",
+          //   element: <Admin />,
+          // },
         ],
       },
       {
