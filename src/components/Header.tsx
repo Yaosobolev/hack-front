@@ -7,12 +7,7 @@ import { checkAuth } from "../utils/checkAuth";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoMdExit } from "react-icons/io";
 
-type Props = {
-  sidebarOpen: boolean;
-  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export const Header: React.FC<Props> = () => {
+export const Header: React.FC = () => {
   checkAuth();
 
   const user = useSelector(SelectUser);
@@ -49,7 +44,6 @@ export const Header: React.FC<Props> = () => {
     localStorage.removeItem("refresh_token");
   };
 
-  console.log(user, isAuth);
   return (
     <header className="bg-white ">
       <div className="flex max-w-screen-xl mx-auto justify-between items-center p-4  ">

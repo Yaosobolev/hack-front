@@ -12,6 +12,10 @@ export interface IUniversityQuerystring {
   search?: string;
 }
 
+export interface IUniversityResponseGet {
+  data: IUniversity;
+}
+
 export interface IUniversityResponse {
   data: {
     universities: IUniversity[];
