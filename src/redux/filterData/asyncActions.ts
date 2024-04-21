@@ -6,6 +6,7 @@ import {
   departmentsRes,
   flowsRes,
   groupsRes,
+  usersRes,
 } from "./types";
 // Университет
 export const fetchAllUniversities = createAsyncThunk<universitiesRes>(
@@ -60,7 +61,7 @@ export const fetchAllGroups = createAsyncThunk<groupsRes>(
 //
 
 // Студкнты(рейтинг)
-export const fetchUsers = createAsyncThunk<flowsRes, any>(
+export const fetchUsers = createAsyncThunk<usersRes, any>(
   "filterData/fetchUsersStatus",
   async (params) => {
     const { universities, faculties, departments, flows, groups } = params;

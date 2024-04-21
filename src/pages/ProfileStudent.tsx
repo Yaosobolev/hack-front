@@ -44,6 +44,7 @@ const ProfileStudent = () => {
     currentIndex,
     currentIndex + 3
   );
+
   return (
     <div className="p-4 bg-white rounded-lg relative ">
       <div className="flex flex-row mb-4">
