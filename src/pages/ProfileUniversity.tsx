@@ -3,16 +3,17 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as Api from "../api";
 import { IUniversity } from "../api/interface/IUniversity";
-import CreateUniversity from "../components/CreateUniversity";
+import CreateEvent from "../components/CreateEvent";
 import { SelectUser } from "../redux/user/selector";
 import { checkAuth } from "../utils/checkAuth";
 
 const ProfileUniversity = () => {
   const { id } = useParams();
 
-  const user = useSelector(SelectUser);
   checkAuth(true);
-  console.log(user);
+
+  const user = useSelector(SelectUser);
+
   const [university, setUniversity] = React.useState<IUniversity>({
     name: "",
     city_id: 0,
@@ -42,21 +43,8 @@ const ProfileUniversity = () => {
 
   return (
     <div className="p-4 bg-white rounded-lg relative flex justify-center">
-      {/* <div className="flex flex-row">
-        <img
-          src="https://www.oxfordscholastica.com/wp-content/uploads/2023/07/cambridge-college.jpg"
-          className="w-60 h-32"
-          alt=""
-        />
-        <ul className="ml-4">
-          <div>
-            <h2>Название</h2>
-            <h1 className="">{university.name}</h1>
-          </div>
-        </ul>
-      </div> */}
-
-      <CreateUniversity />
+      <CreateEvent university_id={1} />
+      {/* <CreateUniversity /> */}
     </div>
   );
 };
