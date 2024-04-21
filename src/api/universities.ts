@@ -10,6 +10,7 @@ import {
   IGroupResponse,
   IUniversity,
   IUniversityResponse,
+  IUniversityResponseGet,
 } from "./interface/IUniversity";
 
 export const getAll = async (
@@ -98,4 +99,16 @@ export const getAllGroups = async (
   });
 
   return data.data.groups;
+};
+
+export const get = async (id: number): Promise<IUniversityResponseGet> => {
+  const { data } = await axios.get(`/universities/${id}`);
+
+  return data;
+};
+
+export const create = async (val): Promise<IUniversityResponseGet> => {
+  const { data } = await axios.post("/universities", val);
+
+  return data;
 };
