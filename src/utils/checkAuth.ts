@@ -44,7 +44,7 @@ export const checkAuth = async (redirect = false) => {
       const decodedToken: DecodedToken = jwtDecode(access_token);
 
       const { data } = await Api.users.get(decodedToken.userID);
-
+      console.log(data);
       if (data !== null) {
         return dispatch(setUser(data));
       }

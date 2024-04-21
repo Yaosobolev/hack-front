@@ -12,8 +12,27 @@ type SidebarProps = {
   setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+const getUniversityId = (user) => {
+  let id = "create-university";
+  if (user.TYPE === "DELEGATE") {
+    if (user.university.id) {
+      id = user.university.id;
+    }
+    return id;
+  }
+
+  const flow = user?.group?.flow;
+  const department = flow?.department;
+  const faculty = department?.faculty;
+  const university = faculty?.university;
+
+  return university?.id;
+};
+
 const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
-  const { id } = useSelector(SelectUser);
+  const user = useSelector(SelectUser);
+
+  const university_id = getUniversityId(user);
 
   return (
     <div
@@ -34,10 +53,9 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
           <Link to="/rating" className="hover:bg-gray-100">
             <MdOutlineLeaderboard className="mr-1" /> Рейтинг
           </Link>
-          <Link to={`/profile/${id}`} className="hover:bg-gray-100">
+          <Link to={`/profile/${user.id}`} className="hover:bg-gray-100">
             <CgProfile className="mr-1" /> Личный кабинет
           </Link>
-
           <Link to="/profile-university/1" className="hover:bg-gray-100">
             <FaUniversity className="mr-1" /> Мой вуз
           </Link>
