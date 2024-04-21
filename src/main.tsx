@@ -64,7 +64,7 @@ const router = createBrowserRouter([
             element: <Rating />,
           },
           {
-            path: "/profile",
+            path: "/profile/:id",
             element: <ProfileStudent />,
           },
           {
@@ -73,6 +73,22 @@ const router = createBrowserRouter([
           },
           {
             path: "/adminPanel",
+            element: <Admin />,
+          },
+          {
+            path: "/achievements/science/:id",
+            element: <Admin />,
+          },
+          {
+            path: "/achievements/sport/:id",
+            element: <Admin />,
+          },
+          {
+            path: "/achievements/creativity/:id",
+            element: <Admin />,
+          },
+          {
+            path: "/achievements/volunteering/:id",
             element: <Admin />,
           },
         ],

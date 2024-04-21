@@ -37,7 +37,6 @@ export const FilterHeader: React.FC<FilterHeaderProps> = ({ name }) => {
     dispath(fetchAllGroups());
   };
 
-  console.log(facultiesData);
   const getResult = () => {
     name === "Post"
       ? dispath(fetchPosts(selectedItems))
