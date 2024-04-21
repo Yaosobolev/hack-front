@@ -100,19 +100,22 @@ export default function () {
     return (
       <>
         <div className="bg-white rounded p-6 shadow-md shadow-zinc-200 border border-zinc-200">
-          <div className="flex gap-4">
-            <div>
+          <div className="flex flex-col gap-4">
+            <div className="flex gap-4">
               <img
-                className="w-28 h-28 rounded-full"
+                className="w-14 h-14 rounded-full"
                 src={
                   !universityAvatar
                     ? "http://localhost:3000/images/default-university-avatar.jpg"
                     : `http://localhost:3000/images/${universityAvatar.path}`
                 }
               />
+              <div>
+                <h2 className="text-lg font-medium">{user.university.name}</h2>
+                <p className="text-sm text-zinc-400">{user.university.city.name}</p>
+              </div>
             </div>
             <div className="flex-1 flex flex-col">
-              <h2 className="text-lg font-medium">{user.university.name}</h2>
               <p className="text-sm text-zinc-500">{user.university.content}</p>
             </div>
           </div>
