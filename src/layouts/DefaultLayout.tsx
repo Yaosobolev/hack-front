@@ -12,13 +12,13 @@ const DefaultLayout = () => {
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         <div className="flex-1 container max-w-screen-xl mx-auto grid grid-cols-5 gap-x-10">
-          <div className=" col-span-1 bg-red-100">
+          <div className=" col-span-1">
             <Sidebar
               sidebarOpen={sidebarOpen}
               setSidebarOpen={setSidebarOpen}
             />
           </div>
-          <div className=" col-span-4 bg-red-400">
+          <div className=" col-span-4">
             <main>
               <Outlet />
             </main>
