@@ -23,7 +23,7 @@ const Rating = () => {
           <h2 className=" p-4 mb-4 text-center text-4xl">Рейтинг студентов</h2>
         </div>
         {usersData.users.map((user, index) => (
-          <RatingBlock key={user?.id || index} user={user} />
+          <RatingBlock key={user?.id ?? index} user={user} order={index} />
         ))}
       </div>
       <div>
