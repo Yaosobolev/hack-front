@@ -5,15 +5,12 @@ import { MdOutlineLeaderboard } from "react-icons/md";
 import { RiNewsLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-import { useSelector } from "react-redux";
-
+import { SelectUser } from "../redux/user/selector";
 
 type SidebarProps = {
   sidebarOpen: boolean;
   setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
 
 const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
   const { id } = useSelector(SelectUser);
@@ -43,18 +40,6 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
 
           <Link to="/profile-university" className="hover:bg-gray-100">
             <FaUniversity className="mr-1" /> Личный кабинет вуза
-
-          <Link
-            to={`../profile/${id}`}
-            className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-          >
-            Личный кабинет
-          </Link>
-          <Link
-            to={"../profile-university"}
-            className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-          >
-            Личный кабинет вуза
           </Link>
         </ul>
       </nav>
