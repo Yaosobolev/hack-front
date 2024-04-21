@@ -41,7 +41,7 @@ export const Header = () => {
               />
             </Link>
           </div>
-          <ul className="hidden lg:flex gap-x-8">
+          <ul className="hidden lg:flex gap-8">
             {WORKER_MENU.map((item, index) => {
               return (
                 <li key={index}>
