@@ -11,7 +11,7 @@ const eventTypeOptions = [
 ];
 
 const CreateEvent = () => {
-  const { university_id } = useParams();
+  const { id } = useParams();
 
   const [blank, setBlank] = React.useState({
     name: "",
@@ -19,7 +19,7 @@ const CreateEvent = () => {
     started_at: "",
     finished_at: "",
     type_id: "",
-    university_id,
+    university_id: id,
   });
   const [eventType, setEventType] = React.useState({
     value: "",
@@ -29,7 +29,7 @@ const CreateEvent = () => {
 
   const onSubmit = async (ev) => {
     ev.preventDefault();
-
+    console.log(blank);
     const data = await Api.events.create(blank);
 
     console.log(data);
@@ -137,7 +137,6 @@ const CreateEvent = () => {
           defaultInputValue={eventType.value}
           onChange={(selectedOption) => handleClick(selectedOption)}
         />
-
         <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 mt-5 px-4 rounded hover:bg-blue-600"

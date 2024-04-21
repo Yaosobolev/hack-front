@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Api from "../api";
 import { IUniversity } from "../api/interface/IUniversity";
+import UniversityInfo from "../components/UniversityInfo";
 import { SelectUser } from "../redux/user/selector";
 import { checkAuth } from "../utils/checkAuth";
 
@@ -36,7 +37,7 @@ const ProfileUniversity = () => {
         if (data.delegate_id === parseInt(user.id)) {
           setIsOwner(true);
         }
-        console.log(data);
+        
         setUniversity(data);
       } catch (error) {
         throw new Error("University not found " + error);
@@ -47,7 +48,9 @@ const ProfileUniversity = () => {
   }, []);
 
   return (
-    <div className="p-4 bg-white rounded-lg relative flex justify-center"></div>
+    <div className="p-4 bg-white rounded-lg relative flex justify-center">
+      <UniversityInfo university={university} />
+    </div>
   );
 };
 
