@@ -10,9 +10,9 @@ import { SelectUser } from "../redux/user/selector";
 import { get } from "../api/users";
 
 const ProfileStudent = () => {
-  checkAuth();
   const { firstname, lastname, group_id } = useSelector(SelectUser);
   const { id } = useParams();
+  checkAuth(true);
 
   const [userData, setUserData] = useState({
     firstname: "",
