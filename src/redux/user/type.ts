@@ -3,7 +3,7 @@ export interface CurrentUser {
   email: string;
   firstname: string;
   group_id: number;
-  id: number;
+  id: string;
   lastname: string;
   type: string;
 }

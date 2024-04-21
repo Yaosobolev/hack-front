@@ -15,7 +15,7 @@ export type User = {
 
 const Rating = () => {
   const { usersData } = useSelector(selectFilterData);
-  console.log(usersData);
+  // console.log(usersData);
   return (
     <div className="flex flex-row justify-between gap-x-4">
       <div className="flex flex-col flex-grow gap-y-3 overflow-y-auto">
