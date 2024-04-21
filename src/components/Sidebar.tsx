@@ -38,7 +38,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
             <CgProfile className="mr-1" /> Личный кабинет
           </Link>
 
-          <Link to="/profile-university" className="hover:bg-gray-100">
+          <Link to="/profile-university/1" className="hover:bg-gray-100">
             <FaUniversity className="mr-1" /> Личный кабинет вуза
           </Link>
         </ul>
