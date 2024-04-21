@@ -27,60 +27,67 @@ const Login = () => {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mb-4">Войдите в аккаунт</h2>
-
-      <form onSubmit={onSubmit}>
-        <div className="mb-4 relative">
-          <input
-            id="email"
-            type="email"
-            className="mt-1  block w-full rounded border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 pl-3 pt-4"
-            required
-            value={blank.email}
-            onChange={(ev) =>
-              setBlank((prev) => ({ ...prev, email: ev.target.value }))
-            }
-          />
-          <label
-            htmlFor="email"
-            className="absolute left-2 top-3 text-black transition-all duration-300"
-          >
-            Email
-          </label>
+      <div className="container max-w-md mx-auto px-4 flex flex-col items-center justify-center">
+        <div className="flex flex-col">
+          <div className="text-center">
+            <h2 className="py-2 text-xl bg-violet-600 scale-105 text-white">
+              Вход
+            </h2>
+          </div>
+          <div className="bg-white shadow-lg px-16 py-8 rounded-lg">
+            <form onSubmit={onSubmit}>
+              <div>
+                <label className="flex flex-col gap-2">
+                  <span className="text-sm font-medium">Почта</span>
+                  <input
+                    className="text-sm px-4 py-2 rounded border border-gray-200"
+                    type="email"
+                    value={blank.email}
+                    onChange={(ev) =>
+                      setBlank((prev) => ({ ...prev, email: ev.target.value }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <label className="flex flex-col gap-2">
+                  <span className="text-sm font-medium">Пароль</span>
+                  <input
+                    className="text-sm px-4 py-2 rounded border border-gray-200"
+                    type="password"
+                    value={blank.password}
+                    onChange={(ev) =>
+                      setBlank((prev) => ({
+                        ...prev,
+                        password: ev.target.value,
+                      }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <button
+                  className="w-full rounded bg-violet-100 border-2 border-violet-200 text-violet-600 text-sm px-4 py-2 transition-colors font-medium hover:bg-violet-600 hover:text-white"
+                  type="submit"
+                >
+                  Войти
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="px-16 py-4 text-center">
+            <div className="mt-4">
+              <span className="text-sm text-zinc-400 text-center">
+                Если у вас ещё нет аккаунта, то вы можете{" "}
+                <Link to="/auth/register/student/" className="text-violet-400">
+                  зарегистрироваться
+                </Link>
+                .
+              </span>
+            </div>
+          </div>
         </div>
-        <div className="mb-2 relative">
-          <input
-            id="password"
-            type="password"
-            className="mt-1  block w-full rounded border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 pl-3 pt-4"
-            required
-            value={blank.password}
-            onChange={(ev) =>
-              setBlank((prev) => ({ ...prev, password: ev.target.value }))
-            }
-          />
-          <label
-            htmlFor="password"
-            className="absolute left-2 top-3 text-black transition-all duration-300"
-          >
-            Пароль
-          </label>
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-        >
-          Войти
-        </button>
-      </form>
-
-      <span>
-        У вас нет аккаунта?{" "}
-        <Link to="/auth/register/student/" className="text-red-400">
-          Зарегистрируйтесь
-        </Link>
-      </span>
+      </div>
     </>
   );
 };

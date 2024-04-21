@@ -1,11 +1,12 @@
 import React from "react";
+import "../../App.css";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import "../../App.css";
 import { SelectRegistrationBlank } from "../../redux/registrationBlank/selector";
 import { changeBlank } from "../../redux/registrationBlank/slice";
 import { useAppDispatch } from "../../redux/store";
 import * as Api from "../../api";
+import { PiStudent, PiChalkboardTeacher } from "react-icons/pi";
 
 const UserRegistration = () => {
   const navigate = useNavigate();
@@ -41,134 +42,169 @@ const UserRegistration = () => {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mb-4 flex flex-row">
-        Создайте профиль{" "}
-        <h2
-          className={`${
-            currentTab === "student" ? "_underline" : "_default"
-          } ml-4`}
-          onClick={() => setCurrentTab("student")}
-        >
-          Студента
-        </h2>
-        <i className="mx-2">|</i>
-        <h2
-          className={currentTab === "delegate" ? "_underline" : "_default"}
-          onClick={() => setCurrentTab("delegate")}
-        >
-          Администратора
-        </h2>
-      </h2>
+      <div className="container max-w-xl mx-auto px-4 flex flex-col items-center justify-center">
+        <div className="flex flex-col">
+          <div className="text-center">
+            <h2 className="py-2 text-xl bg-violet-600 scale-105 text-white">
+              Регистрация
+            </h2>
+          </div>
+          <div className="bg-white shadow-lg px-16 py-8 rounded-lg">
+            <div className="flex gap-4">
+              <div
+                className={[
+                  "flex gap-2 border-b-4 cursor-pointer py-4",
+                  currentTab == "student"
+                    ? "border-violet-400"
+                    : "border-transparent",
+                ].join(" ")}
+                onClick={() => setCurrentTab("student")}
+              >
+                <div>
+                  <PiStudent
+                    className={[
+                      "w-10 h-10",
+                      currentTab == "student" ? "text-violet-600" : "",
+                    ].join(" ")}
+                  ></PiStudent>
+                </div>
+                <div>
+                  <h3 className="text-sm font-medium">Студент</h3>
+                  <span className="text-xs l font-light">
+                    Учавствуйте в мероприятиях и получайте рейтинг.
+                  </span>
+                </div>
+              </div>
 
-      <form onSubmit={onSubmit}>
-        <div className="mb-4 relative">
-          <input
-            id="firstname"
-            type="text"
-            className="mt-1 block w-full rounded border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 pl-3 pt-4"
-            required
-            value={blank.firstname}
-            onChange={(ev) =>
-              setBlank((prev) => ({ ...prev, firstname: ev.target.value }))
-            }
-          />
-          <label
-            htmlFor="firstname"
-            className="absolute left-2 top-3 text-black transition-all duration-300 pointer-events-none"
-          >
-            Имя
-          </label>
+              <div
+                className={[
+                  "flex gap-2 border-b-4 cursor-pointer py-4",
+                  currentTab == "delegate"
+                    ? "border-violet-400"
+                    : "border-transparent",
+                ].join(" ")}
+                onClick={() => setCurrentTab("delegate")}
+              >
+                <div>
+                  <PiChalkboardTeacher
+                    className={[
+                      "w-10 h-10",
+                      currentTab == "delegate" ? "text-violet-600" : "",
+                    ].join(" ")}
+                  ></PiChalkboardTeacher>
+                </div>
+                <div>
+                  <h3 className="text-sm font-medium">Представитель вуза</h3>
+                  <span className="text-xs l font-light">
+                    Проводите мероприятия на нашей платформе.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <form className="mt-8" onSubmit={onSubmit}>
+              <div>
+                <label className="flex flex-col gap-2">
+                  <span className="text-sm font-medium">Имя</span>
+                  <input
+                    className="text-sm px-4 py-2 rounded border border-gray-200"
+                    type="text"
+                    value={blank.firstname}
+                    onChange={(ev) =>
+                      setBlank((prev) => ({
+                        ...prev,
+                        firstname: ev.target.value,
+                      }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <label className="flex flex-col gap-2">
+                  <span className="text-sm font-medium">Фамилия</span>
+                  <input
+                    className="text-sm px-4 py-2 rounded border border-gray-200"
+                    type="text"
+                    value={blank.lastname}
+                    onChange={(ev) =>
+                      setBlank((prev) => ({
+                        ...prev,
+                        lastname: ev.target.value,
+                      }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <label className="flex flex-col gap-2">
+                  <span className="text-sm font-medium">Почта</span>
+                  <input
+                    className="text-sm px-4 py-2 rounded border border-gray-200"
+                    type="email"
+                    value={blank.email}
+                    onChange={(ev) =>
+                      setBlank((prev) => ({ ...prev, email: ev.target.value }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <label className="flex flex-col gap-2">
+                  <span className="text-sm font-medium">Пароль</span>
+                  <input
+                    className="text-sm px-4 py-2 rounded border border-gray-200"
+                    type="password"
+                    value={blank.password}
+                    onChange={(ev) =>
+                      setBlank((prev) => ({
+                        ...prev,
+                        password: ev.target.value,
+                      }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <label className="flex flex-col gap-2">
+                  <span className="text-sm font-medium">
+                    Подтвердите пароль
+                  </span>
+                  <input
+                    className="text-sm px-4 py-2 rounded border border-gray-200"
+                    type="password"
+                    value={blank.passwordRepeat}
+                    onChange={(ev) =>
+                      setBlank((prev) => ({
+                        ...prev,
+                        passwordRepeat: ev.target.value,
+                      }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <button
+                  className="w-full rounded bg-violet-100 border-2 border-violet-200 text-violet-600 text-sm px-4 py-2 transition-colors font-medium hover:bg-violet-600 hover:text-white"
+                  type="submit"
+                >
+                  {currentTab === "student" ? "Далее" : "Зарегистрироваться"}
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="px-16 py-4 text-center">
+            <div className="mt-4">
+              <span className="text-sm text-zinc-400 text-center">
+                Если у вас уже есть аккаунт, то вы можете{" "}
+                <Link to="/auth/login/" className="text-violet-400">
+                  войти
+                </Link>
+                .
+              </span>
+            </div>
+          </div>
         </div>
-
-        <div className="mb-4 relative">
-          <input
-            id="lastname"
-            type="text"
-            className="mt-1 block w-full rounded border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 pl-3 pt-4"
-            required
-            value={blank.lastname}
-            onChange={(ev) =>
-              setBlank((prev) => ({ ...prev, lastname: ev.target.value }))
-            }
-          />
-          <label
-            htmlFor="lastname"
-            className="absolute left-2 top-3 text-black transition-all duration-300 pointer-events-none"
-          >
-            Фамилия
-          </label>
-        </div>
-
-        <div className="mb-4 relative">
-          <input
-            id="email"
-            type="email"
-            className="mt-1 block w-full rounded border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 pl-3 pt-4"
-            required
-            value={blank.email}
-            onChange={(ev) =>
-              setBlank((prev) => ({ ...prev, email: ev.target.value }))
-            }
-          />
-          <label
-            htmlFor="email"
-            className="absolute left-2 top-3 text-black transition-all duration-300 pointer-events-none"
-          >
-            Email
-          </label>
-        </div>
-
-        <div className="mb-4 relative">
-          <input
-            id="password"
-            type="password"
-            className="mt-1  block w-full rounded border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 pl-3 pt-4"
-            required
-            value={blank.password}
-            onChange={(ev) =>
-              setBlank((prev) => ({ ...prev, password: ev.target.value }))
-            }
-          />
-          <label
-            htmlFor="password"
-            className="absolute left-2 top-3 text-black transition-all duration-300"
-          >
-            Пароль
-          </label>
-        </div>
-
-        <div className="mb-4 relative">
-          <input
-            id="passwordRepeat"
-            type="password"
-            className="mt-1 block w-full rounded border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 pl-3 pt-4"
-            required
-            value={blank.passwordRepeat}
-            onChange={(ev) =>
-              setBlank((prev) => ({ ...prev, passwordRepeat: ev.target.value }))
-            }
-          />
-          <label
-            htmlFor="passwordRepeat"
-            className="absolute left-2 top-3 text-black transition-all duration-300"
-          >
-            Подтвердите Пароль
-          </label>
-        </div>
-
-        <button
-          type="submit"
-          className="mt-2 w-full bg-blue-500 text-white py-3 px-4 text-xl flex flex-row items-center justify-center rounded hover:bg-blue-600"
-        >
-          {currentTab === "student" ? "Дальше" : "Зарегистрироваться"}
-        </button>
-      </form>
-      <span className="text-lg">
-        Уже есть аккаунта?{" "}
-        <Link to="/auth/login" className="text-blue-600">
-          Войти
-        </Link>
-      </span>
+      </div>
     </>
   );
 };

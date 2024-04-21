@@ -134,113 +134,152 @@ const FinalRegistration = () => {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mb-4">
-        Выберите свой ВУЗ и направление
-      </h2>
-
-      <form onSubmit={onSubmit}>
-        <div className="relative mb-4 ">
-          <AsyncSelect
-            placeholder="ВУЗ"
-            className="my-2"
-            required
-            options={universityOptions.university}
-            defaultInputValue={universityInfo.university.name}
-            onChange={(selectedOption) =>
-              selectedOption &&
-              setUniversityInfo((prev) => ({
-                ...prev,
-                university: {
-                  name: selectedOption.value,
-                  id: selectedOption.id,
-                },
-              }))
-            }
-          />
-          <AsyncSelect
-            placeholder="Факультет"
-            className="my-2"
-            required
-            options={universityOptions.facutly}
-            isDisabled={universityInfo.university.name.length === 0}
-            defaultInputValue={universityInfo.faculty.name}
-            onChange={(selectedOption) =>
-              selectedOption &&
-              setUniversityInfo((prev) => ({
-                ...prev,
-                faculty: { name: selectedOption.value, id: selectedOption.id },
-              }))
-            }
-          />
-          <AsyncSelect
-            placeholder="Кафедра"
-            className="my-2"
-            required
-            isDisabled={universityInfo.faculty.name.length === 0}
-            options={universityOptions.department}
-            defaultInputValue={universityInfo.department.name}
-            onChange={(selectedOption) =>
-              selectedOption &&
-              setUniversityInfo((prev) => ({
-                ...prev,
-                department: {
-                  name: selectedOption.value,
-                  id: selectedOption.id,
-                },
-              }))
-            }
-          />
-          <AsyncSelect
-            placeholder="Поток"
-            className="my-2"
-            required
-            isDisabled={universityInfo.department.name.length === 0}
-            options={universityOptions.flow}
-            defaultInputValue={universityInfo.flow.name}
-            onChange={(selectedOption) =>
-              selectedOption &&
-              setUniversityInfo((prev) => ({
-                ...prev,
-                flow: {
-                  name: selectedOption.value,
-                  id: selectedOption.id,
-                },
-              }))
-            }
-          />
-          <AsyncSelect
-            placeholder="Группа"
-            className="my-2"
-            required
-            isDisabled={universityInfo.flow.name.length === 0}
-            options={universityOptions.group}
-            defaultInputValue={universityInfo.group.name}
-            onChange={(selectedOption) =>
-              selectedOption &&
-              setUniversityInfo((prev) => ({
-                ...prev,
-                group: {
-                  name: selectedOption.value,
-                  id: selectedOption.id,
-                },
-              }))
-            }
-          />
+      <div className="container max-w-lg mx-auto px-4 flex flex-col items-center justify-center">
+        <div className="flex flex-col w-full">
+          <div className="text-center">
+            <h2 className="py-2 text-xl bg-violet-600 scale-105 text-white">
+              Данные об образовании
+            </h2>
+          </div>
+          <div className="bg-white shadow-lg px-16 py-8 rounded-lg">
+            <form onSubmit={onSubmit}>
+              <div>
+                <label className="flex flex-col">
+                  <span className="text-sm font-medium">
+                    Образовательное учереждение
+                  </span>
+                  <AsyncSelect
+                    placeholder="Выберите ВУЗ"
+                    className="my-2"
+                    required
+                    options={universityOptions.university}
+                    defaultInputValue={universityInfo.university.name}
+                    onChange={(selectedOption) =>
+                      selectedOption &&
+                      setUniversityInfo((prev) => ({
+                        ...prev,
+                        university: {
+                          name: selectedOption.value,
+                          id: selectedOption.id,
+                        },
+                      }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <label className="flex flex-col">
+                  <span className="text-sm font-medium">Факультет</span>
+                  <AsyncSelect
+                    placeholder="Выберите факультет"
+                    className="my-2"
+                    required
+                    options={universityOptions.facutly}
+                    isDisabled={universityInfo.university.name.length === 0}
+                    defaultInputValue={universityInfo.faculty.name}
+                    onChange={(selectedOption) =>
+                      selectedOption &&
+                      setUniversityInfo((prev) => ({
+                        ...prev,
+                        faculty: {
+                          name: selectedOption.value,
+                          id: selectedOption.id,
+                        },
+                      }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <label className="flex flex-col">
+                  <span className="text-sm font-medium">Кафедра</span>
+                  <AsyncSelect
+                    placeholder="Выберите кафедру"
+                    className="my-2"
+                    required
+                    isDisabled={universityInfo.faculty.name.length === 0}
+                    options={universityOptions.department}
+                    defaultInputValue={universityInfo.department.name}
+                    onChange={(selectedOption) =>
+                      selectedOption &&
+                      setUniversityInfo((prev) => ({
+                        ...prev,
+                        department: {
+                          name: selectedOption.value,
+                          id: selectedOption.id,
+                        },
+                      }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <label className="flex flex-col">
+                  <span className="text-sm font-medium">Поток</span>
+                  <AsyncSelect
+                    placeholder="Выберите поток"
+                    className="my-2"
+                    required
+                    isDisabled={universityInfo.department.name.length === 0}
+                    options={universityOptions.flow}
+                    defaultInputValue={universityInfo.flow.name}
+                    onChange={(selectedOption) =>
+                      selectedOption &&
+                      setUniversityInfo((prev) => ({
+                        ...prev,
+                        flow: {
+                          name: selectedOption.value,
+                          id: selectedOption.id,
+                        },
+                      }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <label className="flex flex-col">
+                  <span className="text-sm font-medium">Группа</span>
+                  <AsyncSelect
+                    placeholder="Выберите группу"
+                    className="my-2"
+                    required
+                    isDisabled={universityInfo.flow.name.length === 0}
+                    options={universityOptions.group}
+                    defaultInputValue={universityInfo.group.name}
+                    onChange={(selectedOption) =>
+                      selectedOption &&
+                      setUniversityInfo((prev) => ({
+                        ...prev,
+                        group: {
+                          name: selectedOption.value,
+                          id: selectedOption.id,
+                        },
+                      }))
+                    }
+                  />
+                </label>
+              </div>
+              <div className="mt-4">
+                <button
+                  className="w-full rounded bg-violet-100 border-2 border-violet-200 text-violet-600 text-sm px-4 py-2 transition-colors font-medium hover:bg-violet-600 hover:text-white"
+                  type="submit"
+                >
+                  Завершить
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className="px-16 py-4 text-center">
+            <div className="mt-4">
+              <span className="text-sm text-zinc-400 text-center">
+                <Link to="/auth/register/student" className="text-violet-400">
+                  Вернуться назад
+                </Link>
+              </span>
+            </div>
+          </div>
         </div>
-
-        <button
-          type="submit"
-          className="mt-2 w-full bg-blue-500 text-white py-2 text-xl px-4 rounded hover:bg-blue-600 flex flex-row justify-center items-center"
-        >
-          Зарегистрироваться
-        </button>
-      </form>
-
-      <span className="text-lg">
-        <Link to="/auth/register/student" className="text-blue-600">
-          Вернуться назад
-        </Link>
-      </span>
+      </div>
     </>
   );
 };
