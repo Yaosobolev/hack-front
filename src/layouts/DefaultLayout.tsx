@@ -8,10 +8,10 @@ const DefaultLayout = () => {
 
   return (
     <>
-      <div className="h-screen flex flex-col gap-10 overflow-hidden bg-[rgb(240,241,247)]">
+      <div className="h-screen flex flex-col gap-8 overflow-hidden bg-[rgb(240,241,247)]">
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-        <div className="flex-1 container max-w-screen-xl mx-auto grid grid-cols-5 gap-x-10">
+        <div className="flex-1 container max-w-screen-xl mx-auto grid grid-cols-5 gap-x-8">
           <div className=" col-span-1">
             <Sidebar
               sidebarOpen={sidebarOpen}
