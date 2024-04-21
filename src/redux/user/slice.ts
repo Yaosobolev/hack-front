@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CurrentUser } from "./type";
-import { fetchUser } from "./asyncAction";
 
 const initialState: CurrentUser = {
   firstname: "",
@@ -10,6 +9,9 @@ const initialState: CurrentUser = {
   type: "",
   group_id: 0,
   created_at: "",
+  university: {
+    id: 0,
+  },
 };
 
 const userSlice = createSlice({
@@ -24,6 +26,10 @@ const userSlice = createSlice({
       state.type = action.payload.type;
       state.group_id = action.payload.group_id;
       state.created_at = action.payload.created_at;
+
+      if (action.payload.university?.id) {
+        state.university.id = action.payload.university.id;
+      }
     },
   },
   extraReducers(builder) {},

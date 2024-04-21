@@ -14,10 +14,12 @@ type SidebarProps = {
 
 const getUniversityId = (user) => {
   let id = "create-university";
-  if (user.TYPE === "DELEGATE") {
+
+  if (user.type === "DELEGATE") {
     if (user.university.id) {
       id = user.university.id;
     }
+
     return id;
   }
 
