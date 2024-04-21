@@ -2,18 +2,27 @@ import React from "react";
 import "../../App.css";
 import * as Api from "../../api";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [blank, setBlank] = React.useState({
     email: "",
     password: "",
   });
 
   const onSubmit = async (ev) => {
-    ev.preventDefault();
+    try {
+      ev.preventDefault();
+      const { data } = await Api.auth.login(blank);
 
-    const { data } = await Api.auth.login(blank);
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("refresh_token", data.refresh_token);
+
+      return navigate("/");
+    } catch (error) {
+      throw new Error("Failed to login " + error);
+    }
   };
 
   return (

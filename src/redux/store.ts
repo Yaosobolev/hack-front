@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import registrationBlankSlice from "./registrationBlank/slice";
 import filterData from "./filterData/slice";
+import registrationBlankSlice from "./registrationBlank/slice";
+import userSlice from "./user/slice";
 
 const store = configureStore({
   reducer: {
     registrationBlank: registrationBlankSlice,
     filterData,
+    user: userSlice,
   },
 });
 

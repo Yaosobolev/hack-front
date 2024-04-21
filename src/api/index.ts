@@ -1,2 +1,3 @@
 export * as auth from "./auth";
 export * as university from "./universities";
+export * as users from "./users";

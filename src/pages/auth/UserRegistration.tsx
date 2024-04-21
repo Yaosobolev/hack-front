@@ -7,7 +7,7 @@ import { changeBlank } from "../../redux/registrationBlank/slice";
 import { useAppDispatch } from "../../redux/store";
 import * as Api from "../../api";
 
-const StudentRegistration = () => {
+const UserRegistration = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -173,4 +173,4 @@ const StudentRegistration = () => {
   );
 };
 
-export default StudentRegistration;
+export default UserRegistration;
