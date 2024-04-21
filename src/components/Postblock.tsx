@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { checkAuth } from "../utils/checkAuth";
 
 function truncateDescription(description, maxLength) {
   if (description.split(" ").length > maxLength) {
@@ -23,6 +24,8 @@ const PostBlock = ({ publication, handleClick }) => {
   };
 
   const handleLikeClick = () => {
+    checkAuth();
+
     SetIsLiked(!isLiked);
     if (isLiked) {
       setCountLikes((prev) => prev - 1);

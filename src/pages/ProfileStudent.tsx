@@ -4,8 +4,11 @@ import { FaArrowLeft, FaArrowRight, FaPenAlt } from "react-icons/fa";
 import { student } from "../TESTDATA/User";
 import { ProfilePostBlock } from "../components";
 import { Link, useLocation } from "react-router-dom";
+import { checkAuth } from "../utils/checkAuth";
 
 const ProfileStudent = () => {
+  checkAuth();
+
   const location = useLocation();
   console.log(location);
   // Удалить

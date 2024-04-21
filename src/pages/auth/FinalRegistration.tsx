@@ -126,7 +126,7 @@ const FinalRegistration = () => {
       localStorage.setItem("access_token", token.data.access_token);
       localStorage.setItem("refresh_token", token.data.refresh_token);
 
-      navigate("/");
+      return navigate("/");
     } catch (error) {
       throw new Error("Failed registration: " + error);
     }
