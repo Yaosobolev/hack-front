@@ -33,7 +33,6 @@ export const FilterInput: React.FC<FilterInputProps> = memo(
         <AsyncSelect
           placeholder={placeholder}
           className="my-2"
-          required
           options={
             itemsData
               ? items.map((item) => ({
