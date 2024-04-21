@@ -83,7 +83,7 @@ const router = createBrowserRouter([
             element: <Achievement />,
           },
           {
-            path: "/event/:id",
+            path: "/events/:id",
             element: <CreateEvent />,
           },
           {

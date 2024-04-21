@@ -5,3 +5,9 @@ export const create = async (val) => {
 
   return data;
 };
+
+export const getAllByUniversity = async (id) => {
+  const { data } = await axios.get(`/events/university/${id}`);
+  console.log(data);
+  return data;
+};
