@@ -17,7 +17,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
 
   return (
     <div
-      className={` inset-y-0 left-0 z-40 w-64 fixed bg-white rounded-2xl lg:static lg:inset-auto lg:translate-x-0 transition-transform duration-200 ease-in-out transform ${
+      className={` inset-y-0 left-0 z-40 fixed bg-white rounded-2xl lg:static lg:inset-auto lg:translate-x-0 transition-transform duration-200 ease-in-out transform ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
           </Link>
 
           <Link to="/profile-university/1" className="hover:bg-gray-100">
-            <FaUniversity className="mr-1" /> Личный кабинет вуза
+            <FaUniversity className="mr-1" /> Мой вуз
           </Link>
         </ul>
       </nav>
